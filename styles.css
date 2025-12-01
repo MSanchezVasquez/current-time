@@ -29,6 +29,89 @@
   }
 }
 
+body.dark {
+  --bg: #121212;
+  --fg: #e0e0e0;
+  --border: #e0e0e0;
+  --input-bg: #1e1e1e;
+  --input-hover: #2a2a2a;
+  --input-focus: #1e1e1e;
+  --border-focus: #bbbbbb;
+  --btn-bg: #e0e0e0;
+  --btn-fg: #121212;
+  --btn-hover-bg: #121212;
+  --btn-hover-fg: #e0e0e0;
+}
+
+body.light {
+  --bg: white;
+  --fg: black;
+  --border: black;
+  --input-bg: #f9f9f9;
+  --input-hover: #efefef;
+  --input-focus: white;
+  --border-focus: #444;
+  --btn-bg: black;
+  --btn-fg: white;
+  --btn-hover-bg: white;
+  --btn-hover-fg: black;
+}
+
+/* === ESTILOS DEL BOTÓN === */
+#theme-toggle {
+  position: absolute; /* Lo saca del flujo normal */
+  top: 20px; /* Distancia desde arriba */
+  right: 20px; /* Distancia desde la derecha */
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100; /* Asegura que esté por encima de todo */
+  transition: transform 0.2s, background 0.2s;
+}
+
+#theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Lógica de los iconos (Sol / Luna) */
+.sun-icon {
+  display: none;
+} /* Ocultar sol por defecto */
+.moon-icon {
+  display: block;
+} /* Mostrar luna por defecto */
+
+/* Cuando es modo oscuro, invertimos: mostramos sol, ocultamos luna */
+@media (prefers-color-scheme: dark) {
+  .sun-icon {
+    display: block;
+  }
+  .moon-icon {
+    display: none;
+  }
+}
+
+body.dark .sun-icon {
+  display: block;
+}
+body.dark .moon-icon {
+  display: none;
+}
+
+body.light .sun-icon {
+  display: none;
+}
+body.light .moon-icon {
+  display: block;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,10 +124,13 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background-color: var(--bg); /* Esto conecta la variable con el fondo */
+  color: var(--fg); /* Esto conecta la variable con el texto */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Suaviza el cambio */
 }
 
 main {
-  border: 2px solid black;
+  border: 2px solid var(--border);
   border-radius: 4px;
   display: flex;
   justify-content: center;
@@ -147,8 +233,8 @@ section {
       font-family: "Cascadia Code";
       font-size: 1rem;
       cursor: pointer;
+      color: var(--fg);
       outline: none;
-      color: white;
       transition: border 0.2s, background 0.2s, transform 0.1s;
 
       &:hover {

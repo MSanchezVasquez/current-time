@@ -42,3 +42,46 @@ timeZoneEl.textContent = userZone;
 
 setInterval(updateClock, 1000);
 updateClock();
+
+// === LÓGICA DARK/LIGHT MODE ===
+const themeToggleBtn = document.getElementById("theme-toggle");
+const body = document.body;
+
+// 1. Cargar preferencia guardada
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+  body.classList.add(savedTheme);
+}
+
+// 2. Evento Click
+themeToggleBtn.addEventListener("click", () => {
+  // Comprobamos si actualmente es oscuro (ya sea por sistema o por clase)
+  const isSystemDark = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  const hasDarkClass = body.classList.contains("dark");
+  const hasLightClass = body.classList.contains("light");
+
+  let isDark = false;
+
+  if (hasDarkClass) {
+    isDark = true;
+  } else if (hasLightClass) {
+    isDark = false;
+  } else {
+    isDark = isSystemDark;
+  }
+
+  // Cambiar estado
+  if (isDark) {
+    // Cambiar a claro
+    body.classList.remove("dark");
+    body.classList.add("light");
+    localStorage.setItem("theme", "light");
+  } else {
+    // Cambiar a oscuro
+    body.classList.remove("light");
+    body.classList.add("dark");
+    localStorage.setItem("theme", "dark");
+  }
+});
