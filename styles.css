@@ -1,0 +1,211 @@
+:root {
+  --bg: white;
+  --fg: black;
+  --border: black;
+  --input-bg: #f9f9f9;
+  --input-hover: #efefef;
+  --input-focus: white;
+  --border-focus: #444;
+  --btn-bg: black;
+  --btn-fg: white;
+  --btn-hover-bg: white;
+  --btn-hover-fg: black;
+}
+
+/* Prefiere oscuro */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121212;
+    --fg: #e0e0e0;
+    --border: #e0e0e0;
+    --input-bg: #1e1e1e;
+    --input-hover: #2a2a2a;
+    --input-focus: #1e1e1e;
+    --border-focus: #bbbbbb;
+    --btn-bg: #e0e0e0;
+    --btn-fg: #121212;
+    --btn-hover-bg: #121212;
+    --btn-hover-fg: #e0e0e0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "JetBrains Mono", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+main {
+  border: 2px solid black;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  width: 500px;
+  height: 300px;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: end;
+}
+
+.container-timezone {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.timezone {
+  font-size: 1rem;
+  color: gray;
+}
+.edit-timezone {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.current-time {
+  font-size: 3rem;
+}
+.current-date {
+  font-size: 1rem;
+}
+
+#modal-1 {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  background: var(--bg);
+  color: var(--fg);
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  padding: 1.3rem;
+  z-index: 1000;
+
+  /* Animación entrada / salida */
+  opacity: 0;
+  scale: 0.95;
+  transition: opacity 0.25s ease, scale 0.25s ease;
+
+  &.is-open {
+    display: block;
+    opacity: 1;
+    scale: 1;
+  }
+
+  header {
+    margin-bottom: 1rem;
+
+    h2 {
+      font-family: "Cascadia Code", monospace;
+      text-align: center;
+      font-size: 1.25rem;
+    }
+  }
+
+  #modal-1-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    input#timezone-search {
+      padding: 7px 8px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      background: var(--input-bg);
+
+      font-family: "Cascadia Code";
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.2s, background 0.2s;
+
+      &:focus {
+        border-color: var(--border-focus);
+        background: var(--input-focus);
+      }
+    }
+
+    select {
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      padding: 7px 8px;
+      background: var(--input-bg);
+      font-family: "Cascadia Code";
+      font-size: 1rem;
+      cursor: pointer;
+      outline: none;
+      color: white;
+      transition: border 0.2s, background 0.2s, transform 0.1s;
+
+      &:hover {
+        background: var(--input-hover);
+      }
+
+      &:focus {
+        border-color: var(--border-focus);
+        background: var(--input-focus);
+        transform: scale(1.01);
+      }
+
+      option {
+        background: var(--input-bg);
+        color: var(--fg);
+      }
+    }
+
+    button.applyTimezone {
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      padding: 9px;
+      font-family: "Cascadia Code";
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+
+      &:hover {
+        background: var(--btn-hover-bg);
+        color: var(--btn-hover-fg);
+      }
+
+      &:active {
+        transform: scale(0.97);
+      }
+    }
+  }
+
+  /* Sombra minimalista */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 480px) {
+  #modal-1 {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  main {
+    width: 95%;
+    height: auto;
+    padding: 1.5rem;
+  }
+
+  .current-time {
+    font-size: 2.4rem;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "current-time",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "dayjs": "^1.11.19",
+    "micromodal": "^0.6.1"
+  }
+}

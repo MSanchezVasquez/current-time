@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/micromodal/dist/micromodal.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Time</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="container-timezone">
+          <h3 class="timezone"></h3>
+          <button class="edit-timezone">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+        </div>
+
+        <h1 class="current-time"></h1>
+        <h2 class="current-date"></h2>
+      </section>
+    </main>
+    <div id="modal-1" aria-hidden="true">
+      <div tabindex="-1" data-micromodal-close>
+        <div role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+          <header>
+            <h2 id="modal-1-title">Change a Timezone</h2>
+          </header>
+
+          <div id="modal-1-content">
+            <select name="timezone" id="timezone-select">
+              <option selected="true" disabled="disabled">
+                Pick a timezone
+              </option>
+              <option value="America/New_York">America/New_York</option>
+              <option value="Europe/London">Europe/London</option>
+              <option value="Asia/Tokyo">Asia/Tokyo</option>
+              <option value="Australia/Sydney">Australia/Sydney</option>
+              <option value="Europe/Paris">Europe/Paris</option>
+              <option value="America/Los_Angeles">America/Los_Angeles</option>
+              <option value="Asia/Kolkata">Asia/Kolkata</option>
+              <option value="America/Sao_Paulo">America/Sao_Paulo</option>
+              <option value="Africa/Johannesburg">Africa/Johannesburg</option>
+              <option value="Europe/Berlin">Europe/Berlin</option>
+            </select>
+            <button
+              aria-label="Close modal"
+              data-micromodal-close
+              class="applyTimezone"
+            >
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
