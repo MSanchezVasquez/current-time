@@ -148,17 +148,33 @@ section {
 
 .container-timezone {
   display: flex;
-  gap: 6px;
+  gap: 10px;
   align-items: center;
+}
+.timezone-controls {
+  display: flex;
+  gap: 5px;
 }
 .timezone {
   font-size: 1rem;
   color: gray;
 }
-.edit-timezone {
+.edit-timezone,
+.detect-location {
   background: transparent;
   border: none;
   cursor: pointer;
+  color: var(--fg); /* Usa el color del tema actual */
+  font-size: 1rem; /* Tamaño del icono */
+  padding: 4px;
+  transition: transform 0.2s, opacity 0.2s;
+  opacity: 0.6;
+}
+
+.edit-timezone:hover,
+.detect-location:hover {
+  transform: scale(1.1);
+  opacity: 1;
 }
 
 .current-time {

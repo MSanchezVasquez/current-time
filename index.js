@@ -13,19 +13,32 @@ const timeZoneEl = document.querySelector(".timezone");
 const currentTimeEl = document.querySelector(".current-time");
 const dayEl = document.querySelector(".current-date");
 const buttonEditTimezone = document.querySelector(".edit-timezone");
+const buttonDetectLocation = document.querySelector(".detect-location");
 const applyTimezone = document.querySelector(".applyTimezone");
 const timezoneSelect = document.getElementById("timezone-select");
 
 let userZone = dayjs.tz.guess();
 
+// Función para limpiar el nombre (Ej: "America/New_York" -> "America / New York")
+const formatZoneName = (zone) => {
+  return zone.replace(/_/g, " ").replace(/\//g, " / ");
+};
+
 function updateClock() {
   const now = dayjs().tz(userZone);
   currentTimeEl.textContent = now.format("HH:mm:ss");
   dayEl.textContent = now.format("dddd, D MMMM, YYYY");
+  timeZoneEl.textContent = formatZoneName(userZone);
 }
 
 buttonEditTimezone.addEventListener("click", () => {
   MicroModal.show("modal-1");
+});
+
+buttonDetectLocation.addEventListener("click", () => {
+  userZone = dayjs.tz.guess(); // Detectar zona del sistema
+  timezoneSelect.value = ""; // Resetear el select del modal
+  updateClock(); // Actualizar reloj
 });
 
 applyTimezone.addEventListener("click", () => {
